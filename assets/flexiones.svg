@@ -1,20 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="sk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5cba7"/><stop offset="1" stop-color="#d4a373"/>
+    </linearGradient>
+    <linearGradient id="sh" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7cbf5a"/><stop offset="1" stop-color="#4a7a30"/>
+    </linearGradient>
+    <linearGradient id="so" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a4a3c"/><stop offset="1" stop-color="#1a2820"/>
+    </linearGradient>
+    <radialGradient id="shadow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#000" stop-opacity="0.55"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
   <rect width="200" height="200" fill="#0b0f0c"/>
-  <line x1="20" y1="170" x2="180" y2="170" stroke="#2b3a2e" stroke-width="3"/>
-  <rect x="75" y="120" width="9" height="50" rx="4" fill="#e8b48a">
-    <animate attributeName="y" values="120;132;120" dur="1.6s" repeatCount="indefinite"/>
-    <animate attributeName="height" values="50;38;50" dur="1.6s" repeatCount="indefinite"/>
-  </rect>
-  <rect x="88" y="120" width="9" height="50" rx="4" fill="#c99970">
-    <animate attributeName="y" values="120;132;120" dur="1.6s" repeatCount="indefinite"/>
-    <animate attributeName="height" values="50;38;50" dur="1.6s" repeatCount="indefinite"/>
-  </rect>
+  <ellipse cx="115" cy="172" rx="70" ry="6" fill="url(#shadow)"/>
   <g>
-    <animateTransform attributeName="transform" type="translate" values="0 0; 0 12; 0 0" dur="1.6s" repeatCount="indefinite"/>
-    <rect x="65" y="115" width="75" height="22" rx="11" fill="#7cbf5a"/>
-    <circle cx="55" cy="122" r="12" fill="#e8b48a"/>
-    <path d="M 43 122 A 12 12 0 0 1 67 122 Z" fill="#3a4a3c"/>
-    <rect x="130" y="120" width="45" height="14" rx="7" fill="#2a3a2c"/>
-    <rect x="168" y="128" width="12" height="8" rx="3" fill="#1a1a1a"/>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 10; 0 0" dur="1.5s" repeatCount="indefinite"/>
+    <path d="M 165 155 L 140 140 L 108 135" stroke="url(#so)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <ellipse cx="168" cy="158" rx="10" ry="5" fill="#1a1a1a"/>
+    <path d="M 110 133 Q 92 128 75 126 L 73 148 Q 92 150 110 152 Z" fill="url(#sh)"/>
+    <path d="M 75 126 L 66 124" stroke="url(#sk)" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="58" cy="123" rx="12" ry="11" fill="url(#sk)"/>
+    <path d="M 46 122 Q 48 110 62 110 Q 72 112 70 120 Q 62 116 52 118 Q 48 120 46 122 Z" fill="#2a1a0a"/>
+    <ellipse cx="70" cy="125" rx="2" ry="3" fill="#c89060"/>
+    <circle cx="50" cy="123" r="1.5" fill="#1a1a1a"/>
+    <path d="M 80 140 L 74 158" stroke="url(#sk)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 92 144 L 86 160" stroke="url(#sk)" stroke-width="9" stroke-linecap="round" opacity="0.85"/>
+    <ellipse cx="74" cy="160" rx="7" ry="3" fill="url(#sk)"/>
+    <ellipse cx="86" cy="162" rx="7" ry="3" fill="#c89060"/>
   </g>
 </svg>
