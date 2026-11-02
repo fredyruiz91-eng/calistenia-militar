@@ -1,0 +1,74 @@
+[
+  {
+    "id": "flexiones",
+    "nombre": "Flexiones",
+    "grupo": "empuje",
+    "nivel": "principiante-intermedio-avanzado",
+    "descripcion": "Ejercicio base de empuje con peso corporal.",
+    "progresiones": ["pared", "inclinada", "rodillas", "completa", "pies elevados"],
+    "errores": ["cadera caída", "medio recorrido", "codos abiertos"]
+  },
+  {
+    "id": "dominadas",
+    "nombre": "Dominadas",
+    "grupo": "tirón",
+    "nivel": "intermedio-avanzado",
+    "descripcion": "Tracción vertical para espalda y brazos.",
+    "progresiones": ["colgado", "escapular", "negativa", "banda", "estricta"],
+    "errores": ["balanceo", "no completar recorrido", "hombros encogidos"]
+  },
+  {
+    "id": "sentadillas",
+    "nombre": "Sentadillas",
+    "grupo": "piernas",
+    "nivel": "principiante-intermedio-avanzado",
+    "descripcion": "Movimiento básico de piernas y cadera.",
+    "progresiones": ["apoyo", "cajón", "completa", "búlgara", "pistol"],
+    "errores": ["rodillas hacia dentro", "talones despegados", "espalda redondeada"]
+  },
+  {
+    "id": "plancha",
+    "nombre": "Plancha",
+    "grupo": "core",
+    "nivel": "principiante-intermedio-avanzado",
+    "descripcion": "Isométrico para estabilidad del core.",
+    "progresiones": ["pared", "rodillas", "completa", "pierna elevada", "toque hombro"],
+    "errores": ["cadera alta", "lumbar arqueada", "respirar mal"]
+  },
+  {
+    "id": "burpees",
+    "nombre": "Burpees",
+    "grupo": "full body",
+    "nivel": "intermedio-avanzado",
+    "descripcion": "Ejercicio global de resistencia y potencia.",
+    "progresiones": ["sin flexión", "paso atrás", "con flexión", "con salto"],
+    "errores": ["aterrizaje rígido", "lumbar hundida", "sin control"]
+  },
+  {
+    "id": "fondos",
+    "nombre": "Fondos",
+    "grupo": "empuje",
+    "nivel": "intermedio-avanzado",
+    "descripcion": "Empuje horizontal/vertical en banco o paralelas.",
+    "progresiones": ["pies en suelo", "banco", "paralelas asistidas", "paralelas"],
+    "errores": ["bajar demasiado", "codos abiertos", "rebote"]
+  },
+  {
+    "id": "zancadas",
+    "nombre": "Zancadas",
+    "grupo": "piernas",
+    "nivel": "principiante-intermedio-avanzado",
+    "descripcion": "Trabajo unilateral de piernas y equilibrio.",
+    "progresiones": ["con apoyo", "estática", "caminando", "búlgara", "con salto"],
+    "errores": ["rodilla hacia dentro", "paso corto", "inclinarse"]
+  },
+  {
+    "id": "mountain-climbers",
+    "nombre": "Mountain Climbers",
+    "grupo": "core/cardio",
+    "nivel": "principiante-intermedio-avanzado",
+    "descripcion": "Ejercicio dinámico de core y acondicionamiento.",
+    "progresiones": ["lento", "alterno", "rápido", "toque hombro"],
+    "errores": ["cadera alta", "rebote", "perder línea"]
+  }
+]
