@@ -3,7 +3,8 @@ const rutinasBase = {
     { nombre:"Flexiones en rodillas", img:"flexiones", trabajo:30, descanso:30, rondas:3 },
     { nombre:"Sentadillas", img:"sentadillas", trabajo:30, descanso:30, rondas:3 },
     { nombre:"Plancha", img:"plancha", trabajo:25, descanso:30, rondas:3 },
-    { nombre:"Mountain climbers", img:"mountain-climbers", trabajo:25, descanso:30, rondas:3 }
+    { nombre:"Mountain climbers", img:"mountain-climbers", trabajo:25, descanso:30, rondas:3 },
+    { nombre:"Zancadas alternas", img:"zancadas", trabajo:30, descanso:30, rondas:3 }
   ],
   intermedio: [
     { nombre:"Flexiones", img:"flexiones", trabajo:35, descanso:25, rondas:4 },
@@ -28,12 +29,46 @@ const rutinasBase = {
 };
 
 const STORAGE_KEY = "calistenia-progress";
+const VOZ_KEY = "calistenia-voz";
+
 let planSemanas = null;
 let timeline = [], indice = 0, restante = 0, duracionFase = 1;
 let fase = "trabajo", corriendo = false, intervalo = null;
+
+let vozDisponible = ("speechSynthesis" in window);
+let vozActiva = localStorage.getItem(VOZ_KEY) !== "off";
+
 const $ = (id) => document.getElementById(id);
 
-// ---------- Progreso (localStorage) ----------
+// ---------- Voz ----------
+function hablar(texto, opciones = {}) {
+  if (!vozActiva || !vozDisponible) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(texto);
+    u.lang = "es-ES";
+    u.rate = opciones.rapido ? 1.5 : 1.05;
+    u.pitch = 1;
+    u.volume = 1;
+    const voces = window.speechSynthesis.getVoices();
+    const esVoz = voces.find(v => v.lang && v.lang.toLowerCase().startsWith("es"));
+    if (esVoz) u.voice = esVoz;
+    window.speechSynthesis.speak(u);
+  } catch (e) {}
+}
+
+function actualizarBotonVoz() {
+  const b = $("btnVoz");
+  if (!b) return;
+  if (!vozDisponible) {
+    b.textContent = "🔇 Voz no disponible";
+    b.disabled = true;
+    return;
+  }
+  b.textContent = vozActiva ? "🔊 Voz: ON" : "🔇 Voz: OFF";
+}
+
+// ---------- Progreso ----------
 function progresoVacio(){ return { totalSesiones:0, racha:0, ultimaFecha:null, ultimaRutina:null, porRutina:{} }; }
 function cargarProgreso(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || progresoVacio(); } catch(e){ return progresoVacio(); } }
 function guardarProgreso(p){ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
@@ -95,7 +130,6 @@ function construir(clave){
   for (let r = 1; r <= max; r++) {
     ejs.forEach(e => {
       if (r <= (e.rondas || 1)) {
-        // Ajustar trabajo/descanso si hay datos de la semana
         let trabajo = e.trabajo;
         let descanso = e.descanso;
         if (semana) {
@@ -109,12 +143,14 @@ function construir(clave){
   return out;
 }
 
-// ---------- Control del cronómetro ----------
+// ---------- Control ----------
 function iniciar(){
   if (corriendo) return;
   if (!timeline.length) reiniciar(false);
   corriendo = true;
   $("btnIniciar").textContent = "Pausar";
+  const actual = timeline[indice];
+  if (actual) hablar(actual.nombre);
   intervalo = setInterval(tick, 1000);
 }
 
@@ -122,12 +158,14 @@ function pausar(){
   corriendo = false;
   clearInterval(intervalo);
   $("btnIniciar").textContent = "Continuar";
+  if (vozDisponible) window.speechSynthesis.cancel();
 }
 
 function reiniciar(render = true){
   clearInterval(intervalo);
   corriendo = false;
   $("btnIniciar").textContent = "Iniciar";
+  if (vozDisponible) window.speechSynthesis.cancel();
   timeline = construir($("rutina").value);
   indice = 0;
   fase = "trabajo";
@@ -139,6 +177,9 @@ function reiniciar(render = true){
 function tick(){
   if (!corriendo) return;
   restante--;
+  if (restante === 3) hablar("tres", { rapido: true });
+  else if (restante === 2) hablar("dos", { rapido: true });
+  else if (restante === 1) hablar("uno", { rapido: true });
   if (restante <= 0) avanzar();
   render();
 }
@@ -149,6 +190,7 @@ function avanzar(){
     fase = "descanso";
     restante = actual.descanso;
     duracionFase = restante || 1;
+    hablar("descanso");
     beep(660, 0.12);
     return;
   }
@@ -157,6 +199,7 @@ function avanzar(){
   if (indice >= timeline.length) { terminar(); return; }
   restante = timeline[indice].trabajo;
   duracionFase = restante || 1;
+  hablar(timeline[indice].nombre);
   beep(880, 0.18);
 }
 
@@ -174,6 +217,7 @@ function terminar(){
   $("barra-progreso").style.width = "100%";
   $("barra-progreso").classList.remove("descanso");
   registrarSesion($("rutina").value);
+  hablar("Rutina completada. Buen trabajo.");
   beep(440, 0.4);
 }
 
@@ -196,10 +240,15 @@ function render(){
   $("barra-progreso").style.width = pct + "%";
   $("barra-progreso").classList.toggle("descanso", enDescanso);
 
-  // Imagen local
+  // Lógica de la Imagen: intenta .jpg, si no existe usa .svg
   const img = actual.img || "flexiones";
-  $("img-ejercicio").src = "assets/" + img + ".svg";
-  $("img-ejercicio").alt = actual.nombre;
+  const imgEl = $("img-ejercicio");
+  imgEl.onerror = () => { 
+    imgEl.onerror = null; 
+    imgEl.src = "assets/" + img + ".svg"; 
+  };
+  imgEl.src = "assets/" + img + ".jpg";
+  imgEl.alt = actual.nombre;
 
   const sig = timeline[indice + 1];
   $("detalle").textContent = "Siguiente: " + (sig ? sig.nombre : "Fin de la rutina");
@@ -227,16 +276,30 @@ function beep(frecuencia, duracion){
 
 // ---------- Init ----------
 document.addEventListener("DOMContentLoaded", async () => {
+  if (vozDisponible) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+  }
+  actualizarBotonVoz();
+
   $("rutina").addEventListener("change", () => reiniciar());
   $("semana").addEventListener("change", () => { actualizarSemanaUI(); reiniciar(); });
   $("btnIniciar").addEventListener("click", () => corriendo ? pausar() : iniciar());
   $("btnReiniciar").addEventListener("click", () => reiniciar());
+  $("btnVoz").addEventListener("click", () => {
+    vozActiva = !vozActiva;
+    localStorage.setItem(VOZ_KEY, vozActiva ? "on" : "off");
+    actualizarBotonVoz();
+    if (!vozActiva && vozDisponible) window.speechSynthesis.cancel();
+    if (vozActiva) hablar("voz activada");
+  });
   $("btnReset").addEventListener("click", () => {
     if (confirm("Borrar todo el progreso guardado?")) {
       localStorage.removeItem(STORAGE_KEY);
       renderProgreso();
     }
   });
+
   renderProgreso();
   await cargarPlan();
   reiniciar();
