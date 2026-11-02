@@ -9,7 +9,36 @@
 <body>
   <main class="app">
     <h1>Calistenia Militar</h1>
-    <p class="sub">Temporizador de circuitos por rondas</p>
+
+    <section class="stats">
+      <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-lbl">Sesiones</span></div>
+      <div class="stat"><span class="stat-num" id="stat-racha">0</span><span class="stat-lbl">Racha (dias)</span></div>
+      <div class="stat"><span class="stat-num stat-sm" id="stat-ultima">-</span><span class="stat-lbl">Ultima sesion</span></div>
+      <div class="stat"><span class="stat-num stat-sm" id="stat-rutina">-</span><span class="stat-lbl">Ultima rutina</span></div>
+    </section>
+
+    <section class="semana-panel">
+      <div class="semana-info">
+        <span class="semana-num" id="semana-num">1</span>
+        <div>
+          <div class="semana-lbl">Semana</div>
+          <div class="semana-foco" id="semana-foco">Adaptacion tecnica</div>
+        </div>
+      </div>
+      <label class="selector-semana">
+        Elegir semana
+        <select id="semana">
+          <option value="1">Semana 1</option>
+          <option value="2">Semana 2</option>
+          <option value="3">Semana 3</option>
+          <option value="4">Semana 4</option>
+          <option value="5">Semana 5</option>
+          <option value="6">Semana 6</option>
+          <option value="7">Semana 7</option>
+          <option value="8">Semana 8</option>
+        </select>
+      </label>
+    </section>
 
     <label class="selector">
       Rutina
@@ -17,14 +46,16 @@
         <option value="principiante">Principiante</option>
         <option value="intermedio">Intermedio</option>
         <option value="avanzado">Avanzado</option>
-        <option value="militar">Reto militar 21 días</option>
+        <option value="militar">Reto militar 21 dias</option>
       </select>
     </label>
 
     <section class="panel">
+      <img id="img-ejercicio" class="img-ejercicio" src="assets/flexiones.svg" alt="">
       <div id="fase" class="fase">Listo</div>
       <h2 id="ejercicio">Selecciona una rutina</h2>
       <div id="tiempo" class="tiempo">00:00</div>
+      <div class="barra"><div id="barra-progreso" class="barra-fill"></div></div>
       <p id="detalle" class="detalle"></p>
       <div class="botones">
         <button id="btnIniciar">Iniciar</button>
@@ -34,9 +65,9 @@
 
     <ol id="lista" class="lista"></ol>
 
-    <p class="aviso">
-      Calienta 5-8 minutos antes. Detente si sientes dolor agudo. Técnica primero.
-    </p>
+    <div class="footer-acciones">
+      <button id="btnReset" class="peligro">Borrar progreso</button>
+    </div>
   </main>
   <script src="app.js"></script>
 </body>
