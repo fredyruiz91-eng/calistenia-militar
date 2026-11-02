@@ -1,0 +1,14 @@
+{
+  "objetivo": "Progresion de calistenia militar en 8 semanas",
+  "notas": "Aumenta volumen o intensidad cada semana. La semana 8 es de test y descarga.",
+  "semanas": [
+    { "n": 1, "foco": "Adaptacion tecnica", "sesiones": 3, "rondas": 3, "trabajoSeg": 30, "descansoSeg": 30, "nota": "Prioriza forma sobre reps." },
+    { "n": 2, "foco": "Base de fuerza",     "sesiones": 3, "rondas": 3, "trabajoSeg": 35, "descansoSeg": 25, "nota": "Suma 5s de trabajo." },
+    { "n": 3, "foco": "Volumen",            "sesiones": 4, "rondas": 4, "trabajoSeg": 35, "descansoSeg": 25, "nota": "Una ronda mas." },
+    { "n": 4, "foco": "Intensidad",         "sesiones": 4, "rondas": 4, "trabajoSeg": 40, "descansoSeg": 20, "nota": "Menos descanso." },
+    { "n": 5, "foco": "Consolidacion",      "sesiones": 4, "rondas": 5, "trabajoSeg": 40, "descansoSeg": 20, "nota": "Cuerpo solido." },
+    { "n": 6, "foco": "Resistencia",        "sesiones": 5, "rondas": 5, "trabajoSeg": 45, "descansoSeg": 20, "nota": "Ritmo alto." },
+    { "n": 7, "foco": "Pico",               "sesiones": 5, "rondas": 5, "trabajoSeg": 50, "descansoSeg": 15, "nota": "Maximo esfuerzo tecnico." },
+    { "n": 8, "foco": "Test y descarga",    "sesiones": 3, "rondas": 3, "trabajoSeg": 30, "descansoSeg": 30, "nota": "Test final y recuperacion." }
+  ]
+}
