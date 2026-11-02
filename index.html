@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calistenia Militar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <h1>Calistenia Militar</h1>
+    <p class="sub">Temporizador de circuitos por rondas</p>
+
+    <label class="selector">
+      Rutina
+      <select id="rutina">
+        <option value="principiante">Principiante</option>
+        <option value="intermedio">Intermedio</option>
+        <option value="avanzado">Avanzado</option>
+        <option value="militar">Reto militar 21 días</option>
+      </select>
+    </label>
+
+    <section class="panel">
+      <div id="fase" class="fase">Listo</div>
+      <h2 id="ejercicio">Selecciona una rutina</h2>
+      <div id="tiempo" class="tiempo">00:00</div>
+      <p id="detalle" class="detalle"></p>
+      <div class="botones">
+        <button id="btnIniciar">Iniciar</button>
+        <button id="btnReiniciar" class="secundario">Reiniciar</button>
+      </div>
+    </section>
+
+    <ol id="lista" class="lista"></ol>
+
+    <p class="aviso">
+      Calienta 5-8 minutos antes. Detente si sientes dolor agudo. Técnica primero.
+    </p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
