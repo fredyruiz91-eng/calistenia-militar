@@ -1,0 +1,121 @@
+:root {
+  --bg: #0b0f0c;
+  --panel: #141a15;
+  --line: #2b3a2e;
+  --text: #e8f0e9;
+  --muted: #9fb3a3;
+  --accent: #7cbf5a;
+  --accent-2: #d6b25e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #162018, var(--bg));
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.app {
+  width: min(760px, 92vw);
+  margin: 0 auto;
+  padding: 28px 0 48px;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.sub { margin: 0 0 20px; color: var(--muted); }
+
+.selector {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+select, button {
+  font: inherit;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  padding: 12px 14px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #151d16, #101510);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+
+.fase {
+  color: var(--accent-2);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+#ejercicio { margin: 10px 0 4px; font-size: clamp(1.3rem, 4vw, 2rem); }
+
+.tiempo {
+  font-size: clamp(3rem, 12vw, 5.5rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.detalle { min-height: 1.4em; color: var(--muted); }
+
+.botones { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+
+button {
+  cursor: pointer;
+  min-width: 120px;
+  font-weight: 700;
+}
+
+button:hover { border-color: var(--accent); }
+
+button.secundario { color: var(--muted); }
+
+.lista {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.lista li {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(20, 26, 21, 0.75);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.lista li.activo {
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(124, 191, 90, 0.12);
+}
+
+.aviso {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
